@@ -7,7 +7,7 @@ access-list 110 deny udp any 100.0.0.0 255.255.192.0
 ! interface GigabitEthernet0/0 should only be used for TCP traffic
 interface GigabitEthernet0/0
    ! 200.1.1.1 is the local router interface IP address
-   ip address 200.1.1.1 255.255.255.0
+   ip address 200.1.1.1 0.0.0.63
    
    ! We will apply this to filter out the outgoing UDP traffic  
    ip access-group 110 out
