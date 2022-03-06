@@ -1,0 +1,13 @@
+! 100.1.0.0/18 is the IP block reserved by the public cloud provider for protected
+! instances which are running UDP services.  We want to filter out the TCP DRDoS traffic.
+access-list 120 deny tcp any 100.1.0.0 255.255.192.0
+
+! interface GigabitEthernet0/1 should only be used for UDP traffic
+interface GigabitEthernet0/1
+   ! 200.2.1.1 is the local router interface IP address
+   ip address 200.2.1.1 255.255.255.0
+   
+   ! We will apply this to filter out the outgoing TCP traffic  
+   ip access-group 120 out
+   no shutdown
+   end
